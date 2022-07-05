@@ -1,29 +1,47 @@
 import {
   faAdd,
   faBell,
-  faBellConcierge,
+  faListDots,
   faMessage,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
-import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
+
 import React from "react";
 import IconButton from "../Buttons/IconButton";
 import LinkImgButton from "../Buttons/LinkImgButton";
 
 const NavMenu = () => {
+  const { data: session } = useSession();
   return (
     <div className="nav-menu-container">
-      <div className="nav-menu">
-        <IconButton icon={faAdd} text="Create" />
-        <IconButton icon={faMessage} text="Messenger" />
-        <IconButton icon={faBell} text="Notification" />
+      <div className="nav-menu ">
+        {session && (
+          <>
+            <IconButton
+              icon={faAdd}
+              text="Create"
+              btnClass="icon-btn xl:hidden"
+            />
+            <IconButton
+              icon={faListDots}
+              text="Menu"
+              btnClass="icon-btn hidden xl:block"
+            />
+            <IconButton icon={faMessage} text="Messenger" />
+            <IconButton icon={faBell} text="Notification" />
+          </>
+        )}
 
         <LinkImgButton
-          src="/images/websiteImages/profile.jpg"
-          href="/profile"
-          text="Your Profile"
+          src={
+            session?.user?.image
+              ? session.user.image
+              : "/images/profile/profile.png"
+          }
+          href={session ? "/profile" : "/"}
+          text={session ? "Your Profile" : "Login"}
           imgClass="img-icon"
+          onClick={session ? signOut : signIn}
         />
       </div>
     </div>

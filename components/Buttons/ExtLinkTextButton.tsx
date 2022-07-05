@@ -6,29 +6,27 @@ interface Props {
   href: string;
   src: string;
   text: string;
-  icon?: string;
-  onClick?: () => {};
 }
-const LinkImgTextButton = ({ href, src, text, icon, onClick }: Props) => {
+const ExtLinkTextButton = ({ href, src, text }: Props) => {
   return (
-    <Link href={href}>
-      <button className="icon-round-text-btn" onClick={() => onClick?.()}>
-        <div className={icon ? icon : "img-icon-small"}>
+    <a href={href}>
+      <button className="icon-round-text-btn my-1">
+        <div className="w-8 h-8 rounded-md">
           <Image
-            src={src}
+            src={`/images/pagesImages/${src}.png`}
             width={30}
             height={30}
             layout="responsive"
-            className="img-base rounded-full"
+            className="img-base rounded-md"
           />
         </div>
         <p className="text-textMedium">{text}</p>
       </button>
-    </Link>
+    </a>
   );
 };
 
-export default LinkImgTextButton;
+export default ExtLinkTextButton;
 
 //  <LinkImgTextButton
 //    href="/profile"

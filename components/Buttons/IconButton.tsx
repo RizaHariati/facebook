@@ -5,11 +5,12 @@ import React from "react";
 interface Props {
   text: string;
   icon: IconProp;
+  btnClass?: string;
 }
 
-const IconButton = ({ icon, text }: Props) => {
+const IconButton = ({ icon, text, btnClass }: Props) => {
   return (
-    <button className="icon-btn">
+    <button className={btnClass ? btnClass : "icon-btn"}>
       <FontAwesomeIcon icon={icon} />
       <p className="icon-note">{text}</p>
     </button>

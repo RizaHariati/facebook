@@ -47,6 +47,7 @@ const Stories = () => {
           >
             <div className="absolute w-full h-full top-0 left-0 img-base hover:scale-110 transition-all z-0">
               <Image
+                priority
                 src={`/images/main/${story.mainImage}.jpg`}
                 width={350}
                 height={700}

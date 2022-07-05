@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import React from "react";
 import LogoSearch from "./LogoSearch";
 import NavLinks from "./NavLinks";
